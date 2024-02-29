@@ -1,16 +1,35 @@
-# Bun + React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-Using `bun` instead of `npm`, and `bunx` instead of npx.
-
-## Tailwind + ShadCN for easy UI dev
-
-[Tailwind](https://tailwindcss.com/docs/guides/vite) is already setup for easy yet powerfully custom styling.
-[ShadCN](https://ui.shadcn.com/docs/installation/vite) providing a simple layer above [Radix UI](https://www.radix-ui.com/) and Tailwind.
-
-Start Dev
-`bun run dev`
-
 # Remembrance
 
 A simple birthday and anniversary reminder app. Porting it first to Chrome, so whenver new tab is opened, I get to see a timer for all the birthdays and events that matter to me.
+
+# A simple app to remember birthdays, and key events
+
+## MVP
+
+Along with saving their interests and likes
+Currently only for birthdays and anniversaries
+
+# Todo Priorities
+
+- Add custom style, custom colors to TW config
+- use colors in main button
+- add a main App styling, center, margin, etc.
+
+# Wrapper App
+
+- have header, responsive when styling
+- smol logo - no need for menu for the moment
+
+# Event list p1
+
+- Styling !p1
+- Empty state, "add first event"
+- have + Add Event in the list state, remove from other screens
+
+# Add Event
+
+- Styling p1
+
+# Event detail section:
+
+Done wtih delete
