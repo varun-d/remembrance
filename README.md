@@ -1,35 +1,27 @@
 # Remembrance
 
-A simple birthday and anniversary reminder app. Porting it first to Chrome, so whenver new tab is opened, I get to see a timer for all the birthdays and events that matter to me.
-
-# A simple app to remember birthdays, and key events
-
-## MVP
-
-Along with saving their interests and likes
-Currently only for birthdays and anniversaries
+A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared days before the event!
 
 # Todo Priorities
 
-- Add custom style, custom colors to TW config
-- use colors in main button
-- add a main App styling, center, margin, etc.
+- Fucking, have to use moment js or you will die...
+- Fix dates with Turning (1999 shows 25 for some reason)
+- Fix dates with Actual (shows -1 day on Tue, Xth Jan)
+- Fix X days to go and confirm
+- X days to go if 14 or less days, in yellow with emoji.
+- X days to go if 7 or less days, in red with emoji.
+- Finally, SORT by number of days!!
+- change color of birthday/anni tag to primary app color
 
-# Wrapper App
+- Show IconTrashX on Hover for each card, not to clutter the view
 
-- have header, responsive when styling
-- smol logo - no need for menu for the moment
+- Fix the input boxes UI
 
-# Event list p1
-
-- Styling !p1
 - Empty state, "add first event"
-- have + Add Event in the list state, remove from other screens
+- Edge cases test
 
-# Add Event
+  - Name input limit chars to 120.
 
-- Styling p1
-
-# Event detail section:
-
-Done wtih delete
+- Test on local Chrome tab
+- Create icon, marketing material
+- PUBLISH on Chrome Store

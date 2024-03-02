@@ -1,9 +1,10 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./components/ui/button";
 import Header from "./components/Header";
-import AddEvent from "./components/ui/AddEvent";
+import AddEvent from "./components/AddEvent";
 import { EventType } from "./components/types";
 import EventListItem from "./components/EventListItem";
+import { FilePlusIcon } from "@radix-ui/react-icons";
 
 function App() {
   // State for events
@@ -46,17 +47,17 @@ function App() {
     // dispatchMode("editEvent");
   };
 
-  // const handleClickEventDetailDeleteFx = (eventId: string) => {
-  //   // delete and create copy of new state here events setEvents
-  //   let newEventList = events.filter((event) => {
-  //     return event.id !== eventId;
-  //   });
-  //   // This was important! Need to close view!
-  //   // Otherwise, got the React 16+ Warning: Cannot update a component * while rendering a different component *
-  //   dispatchMode("closeAll");
-  //   console.log(newEventList);
-  //   setEvents(newEventList);
-  // };
+  const handleClickEventDeleteFx = (eventId: string) => {
+    // delete and create copy of new state here events setEvents
+    let newEventList = events.filter((event) => {
+      return event.id !== eventId;
+    });
+    // This was important! Need to close view!
+    // Otherwise, got the React 16+ Warning: Cannot update a component * while rendering a different component *
+    // dispatchMode("closeAll");
+    console.log(newEventList);
+    setEvents(newEventList);
+  };
 
   // Map over events to create array of EventListItem
   const eventList = events?.map((item) => {
@@ -67,9 +68,8 @@ function App() {
         id={item.id}
         eventType={item.eventType}
         personName={item.personName}
-        eventDate={item.eventDate}
-        interests={item.interests}
-        onSelection={(selectedID) => handleClickEventList(selectedID)}
+        eventDate={item.eventDate} // onSelection={(selectedID) => handleClickEventList(selectedID)}
+        onDelete={(selectedID) => handleClickEventDeleteFx(selectedID)}
       />
     );
   });
@@ -77,18 +77,29 @@ function App() {
   return (
     <main className="max-w-xl mx-auto">
       <Header title="Remembrance" />
-      {/* Add the card here for birthdays */}
-      {/* Add a button here to add cards */}
-      <section className="container mx-auto p-4 inline-flex justify-between">
+      <section className="container p-4">
+        <p className="text-sm text-muted-foreground">
+          A Chrome new-tab app to see events 7 and 14 days before they happen.
+          Be prepared days before the event!
+        </p>
+      </section>
+      <section className="container p-4 inline-flex justify-between">
         <h1 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
           Upcoming events
         </h1>{" "}
-        <Button onClick={() => setShowAddNew(!showAddNew)}>+ Event</Button>
+        {/* <Button onClick={() => setShowAddNew(!showAddNew)}>
+          <IconTextPlus size={18} />
+          &nbsp; Add New Event
+        </Button> */}
+        <Button onClick={() => setShowAddNew(!showAddNew)}>
+          <FilePlusIcon className="mr-2 h-4 w-4" /> Add Event
+        </Button>
       </section>
-      <section className="container mx-auto p-4"></section>
-      <section className="container mx-auto p-4">
-        <div className="mt-8 flex flex-col gap-8">{eventList}</div>
+
+      <section className="container p-4">
+        <div className="mt-6 flex flex-col gap-8">{eventList}</div>
       </section>
+
       {showAddNew && (
         <AddEvent
           requestClose={() => setShowAddNew(!showAddNew)}

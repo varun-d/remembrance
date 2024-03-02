@@ -1,24 +1,18 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import { EventType } from "./types";
 
 interface AddEventProps {
   requestClose: () => void;
   saveData: (event: any) => void;
 }
 
-type EventType = {
-  eventType: string;
-  personName: string;
-  eventDate: string;
-  interests: string[];
-};
-
 export default function AddEvent({ requestClose, saveData }: AddEventProps) {
   const [eventForm, setEventForm] = useState<EventType>({
+    id: "",
     eventType: "",
-    personName: "",
+    personName: "Hello",
     eventDate: "",
-    interests: [],
   });
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -33,15 +27,15 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
           };
         });
         break;
-      case "interests":
-        const interestsArray = value.split(",");
-        setEventForm((prevVal) => {
-          return {
-            ...prevVal,
-            interests: interestsArray.map((item) => item.trim()),
-          };
-        });
-        break;
+      // case "interests":
+      //   const interestsArray = value.split(",");
+      //   setEventForm((prevVal) => {
+      //     return {
+      //       ...prevVal,
+      //       interests: interestsArray.map((item) => item.trim()),
+      //     };
+      //   });
+      //   break;
       default:
         setEventForm((prevVal) => {
           return {
@@ -55,7 +49,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (eventForm.personName != "" && eventForm.eventDate != "") {
-      let _eventCard = { id: nanoid(), ...eventForm };
+      let _eventCard = { ...eventForm, id: nanoid() };
       console.log(_eventCard);
       saveData(_eventCard);
       requestClose();
@@ -124,7 +118,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
             value={eventForm.personName}
           />
           <p className="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-            Please provide a valid email address.
+            Please provide a valid name.
           </p>
         </label>
         <br />
@@ -140,21 +134,6 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
             onChange={handleOnChange}
             value={eventForm.eventDate}
           />
-        </label>
-        {/* Some of their interests input as comma seperated tags into an array */}
-        <label>
-          <span className="block mt-6 text-sm font-medium text-slate-700">
-            Some of their interests
-          </span>
-          <input
-            className="peer block mt-1 w-full px-3 py-2 bg-white border border-black rounded-md text-sm shadow-sm placeholder-slate-400"
-            type="text"
-            name="interests"
-            onChange={handleOnChange}
-          />
-          <p className="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-            You can enter a maximum of 5 interests
-          </p>
         </label>
 
         <button className="mt-6 bg-slate-800 p-4 rounded-md text-white">

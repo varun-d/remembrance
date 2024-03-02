@@ -1,8 +1,30 @@
-import { format, differenceInYears, differenceInCalendarDays } from "date-fns";
 import { EventType } from "./types";
+import { IconTrashX } from "@tabler/icons-react";
+import moment from "moment";
 
-// X days to go - for the current year. If date < today, then show none, if > then calc distance from current day to coming day in days
-// Data in format Fri, 2nd Apr. This NEEDS to be set to THIS YEAr or else day will be wrong!! Lol
+// EventListItemProps which also includes onSelection in our case
+interface EventListItemProps extends EventType {
+  // onSelection: (id: string) => void;
+  onDelete: (id: string) => void;
+}
+
+// Calculate days to go
+function daysToGo(date: string): string {
+  const today = moment();
+  let target = moment(date);
+
+  // Set the date of target to this year. So diff can be calculated.
+  target = target.year(today.year());
+  console.log(target);
+  if (target.isBefore(today, "day")) {
+    return "Done!";
+  } else if (target.isSame(today, "day")) {
+    return "Today!";
+  } else {
+    let _numdays = target.diff(today, "days");
+    return `${_numdays} days to go`;
+  }
+}
 
 // Helper function to create numbers like 1st, 2nd, 3rd, etc...
 function ordinal_suffix_of(i: number) {
@@ -20,68 +42,42 @@ function ordinal_suffix_of(i: number) {
   return i + "th";
 }
 
-// Helper function to write the age text
+// Using Moment.js write a function given a date string calculate the age of the person for the event. If event type is birthday, return "Turning X" where X is the age. If event type is anniversary, return "Celebrating Xst/Xnd/Xrd" where X is the age.
+
 function writeAgeText(eventType: string, eventDate: string): string {
-  // No age text for unknown events
-  let _ageText = "";
-  // Calculate difference in Years. Need to add 1 year for some reason?
-  let _years = differenceInYears(new Date(), new Date(eventDate));
-
-  // Check type of event and create age text
-  if (eventType == "birthday") {
-    _ageText = `Turning ${_years + 1}`;
-  } else if (eventType == "anniversary") {
-    _ageText = `Celebrating ${ordinal_suffix_of(_years)}`;
+  let _eventDate = moment(eventDate);
+  let _today = moment();
+  let _age = _today.diff(_eventDate, "years");
+  console.log(_age);
+  console.log(_eventDate);
+  if (eventType === "birthday") {
+    return `Turning ${_age}`;
+  } else if (eventType === "anniversary") {
+    return `Celebrating ${ordinal_suffix_of(_age)}`;
+  } else {
+    return "Unknown";
   }
-  return _ageText;
 }
 
-// Helper function to calculate days to go
-function calcDaysToGo(eventDate: string): number {
-  let _today = new Date();
-  console.log(_today);
-  let _eventThisYear = changeEventDateToThisYear(eventDate);
-  console.log(_eventThisYear);
-  console.log(differenceInCalendarDays(_eventThisYear, _today));
-  return differenceInCalendarDays(_eventThisYear, _today);
-}
-
-// Helper function to change event date to this year
-function changeEventDateToThisYear(eventDate: string): Date {
-  let _today = new Date();
-  let _eventThisYear = new Date(
-    new Date(eventDate).setFullYear(_today.getFullYear())
-  );
-  return _eventThisYear;
-}
-
-// EventListItemProps which also includes onSelection in our case
-interface EventListItemProps extends EventType {
-  onSelection: (id: string) => void;
-}
-
-// EventListItem. TODO  - Add interests
 export default function EventListItem({
   id,
   eventType,
   personName,
   eventDate,
-  interests,
-  onSelection,
+  onDelete,
 }: EventListItemProps) {
   return (
-    <div className="max-w-md px-2" onClick={() => onSelection(id)}>
+    <div className="max-w-xl px-2">
       <div className="flex flex-row justify-between mb-1">
         {/* Event Type */}
-        <p className="text-sm text-rose-600 font-medium leading-none">
-          {eventType}
+        <p className="text-sm text-primary font-medium leading-none">
+          {eventType} {eventType === "birthday" ? "🎂" : "🎉"} .circa{" "}
+          {moment(eventDate).format("YYYY")}
         </p>
 
         {/* Turning X for Birthday or celebrating Xst/Xnd/Xrd for wedding */}
         <h2 className="scroll-m-20 text-xl font-semibold tracking-tight">
-          {calcDaysToGo(eventDate) > 0
-            ? `${calcDaysToGo(eventDate)} days to go`
-            : "Today!"}
+          {daysToGo(eventDate)}
         </h2>
       </div>
 
@@ -93,11 +89,17 @@ export default function EventListItem({
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             {writeAgeText(eventType, eventDate)}
             {" on "}
-            {format(changeEventDateToThisYear(eventDate), "iii, do LLL")}
+            {moment(eventDate).format("ddd, Do MMM")}
           </p>
         </div>
-
-        <div>Get Gift ideas</div>
+        <div className="inline-flex gap-2">
+          {/* <IconEdit size={24} /> */}
+          <IconTrashX
+            className="m-1 text-red-800 hover:text-red-700 cursor-pointer"
+            size={24}
+            onClick={() => onDelete(id)}
+          />
+        </div>
       </div>
       <hr className="mt-2" />
     </div>

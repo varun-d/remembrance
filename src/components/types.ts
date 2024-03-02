@@ -3,5 +3,4 @@ export type EventType = {
   eventType: string;
   personName: string;
   eventDate: string;
-  interests: string[];
 };
