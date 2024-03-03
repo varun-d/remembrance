@@ -2,26 +2,29 @@
 
 A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared days before the event!
 
-# Todo Priorities
+# Roadmap and priorities
 
-- Fucking, have to use moment js or you will die...
-- Fix dates with Turning (1999 shows 25 for some reason)
-- Fix dates with Actual (shows -1 day on Tue, Xth Jan)
-- Fix X days to go and confirm
-- X days to go if 14 or less days, in yellow with emoji.
-- X days to go if 7 or less days, in red with emoji.
-- Finally, SORT by number of days!!
-- change color of birthday/anni tag to primary app color
+# Release 1
 
-- Show IconTrashX on Hover for each card, not to clutter the view
-
-- Fix the input boxes UI
-
+- Build test
+- Test on phone with Netlify
+- Fix the input box UI, overlay
+- Replace cancel with close button too. Same function to be called.
 - Empty state, "add first event"
-- Edge cases test
-
-  - Name input limit chars to 120.
-
+- Name input limit chars to 120
 - Test on local Chrome tab
 - Create icon, marketing material
 - PUBLISH on Chrome Store
+
+# Release 2
+
+- https://ui.shadcn.com/docs/components/drawer
+- Animations on initial load, and add and remove
+- Import from CSV
+- Show IconTrashX on Hover for each card, not to clutter the view
+- Export to Google Cal, Apple Cal, etc.
+- Export ChatGPT/Gemini prompt for birthday / anni gift recommendations
+
+# Release 3
+
+- Edge cases test

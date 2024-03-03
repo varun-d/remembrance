@@ -1,9 +1,17 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 import moment from "moment";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+export function daysToGoString(daysToGo: number): string {
+  if (daysToGo < 0) {
+    return "Done!";
+  } else if (daysToGo === 0) {
+    return "Today!";
+  } else if (daysToGo <= 1 && daysToGo > 0) {
+    return "Tomorrow!";
+  } else if (daysToGo >= 1 && daysToGo < 2) {
+    return `${Math.floor(daysToGo)} day to go`;
+  } else {
+    return `${Math.floor(daysToGo)} days to go`;
+  }
 }
 
 export function daysToGoNumber(date: string): number {

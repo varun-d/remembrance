@@ -5,11 +5,14 @@ import AddEvent from "./components/AddEvent";
 import { EventType } from "./components/types";
 import EventListItem from "./components/EventListItem";
 import { FilePlusIcon } from "@radix-ui/react-icons";
+import { daysToGoNumber } from "./lib/utils";
+import AddEventForm from "./components/AddEventForm";
+import AddEventOverlay from "./components/AddEventOverlay";
 
 function App() {
   // State for events
   const [events, setEvents] = useState<EventType[]>([]);
-  const [showAddNew, setShowAddNew] = useState(false);
+  const [showAddNew, setShowAddNew] = useState(true);
   // State for selected event. To view, edit or delete.
   const [selectedEventID, setSelectedEventID] = useState("");
 
@@ -19,7 +22,11 @@ function App() {
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData);
-        setEvents(parsedData);
+        // Sort based on calculated daysToGo
+        const sortedEvents = [...parsedData].sort((a, b) => {
+          return daysToGoNumber(a.eventDate) - daysToGoNumber(b.eventDate);
+        });
+        setEvents(sortedEvents);
       } catch (error) {
         console.error("Error parsing data from localStorage:", error);
       }
@@ -61,7 +68,7 @@ function App() {
 
   // Map over events to create array of EventListItem
   const eventList = events?.map((item) => {
-    // TBD pass object instead of primitives!
+    // TBD pass object instead of primitives!)
     return (
       <EventListItem
         key={item.id}
@@ -84,6 +91,7 @@ function App() {
         </p>
       </section>
       <section className="container p-4 inline-flex justify-between">
+        <AddEventForm />
         <h1 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
           Upcoming events
         </h1>{" "}
@@ -101,10 +109,13 @@ function App() {
       </section>
 
       {showAddNew && (
-        <AddEvent
-          requestClose={() => setShowAddNew(!showAddNew)}
-          saveData={(data) => handleSaveData(data)}
-        />
+        // <AddEvent
+        //   requestClose={() => setShowAddNew(!showAddNew)}
+        //   saveData={(data) => handleSaveData(data)}
+        // />
+        <AddEventOverlay requestClose={() => setShowAddNew(!showAddNew)}>
+          <AddEventForm />
+        </AddEventOverlay>
       )}
     </main>
   );
