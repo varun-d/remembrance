@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./components/ui/button";
 import Header from "./components/Header";
-import AddEvent from "./components/AddEvent";
 import { EventType } from "./components/types";
 import EventListItem from "./components/EventListItem";
 import { FilePlusIcon } from "@radix-ui/react-icons";
@@ -47,12 +46,12 @@ function App() {
     setEvents((prevVal) => [...prevVal, data]);
   };
 
-  // handler function when an Event is clicked to view it, edit or delete it
-  const handleClickEventList = (eventId: string) => {
-    setSelectedEventID(eventId);
-    console.log("Selected Event", eventId);
-    // dispatchMode("editEvent");
-  };
+  // Future Releases handler function when an Event is clicked to view it, edit or delete it
+  // const handleClickEventList = (eventId: string) => {
+  //   setSelectedEventID(eventId);
+  //   console.log("Selected Event", eventId);
+  //   // dispatchMode("editEvent");
+  // };
 
   const handleClickEventDeleteFx = (eventId: string) => {
     // delete and create copy of new state here events setEvents
@@ -91,7 +90,6 @@ function App() {
         </p>
       </section>
       <section className="container p-4 inline-flex justify-between">
-        <AddEventForm />
         <h1 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
           Upcoming events
         </h1>{" "}
@@ -114,7 +112,10 @@ function App() {
         //   saveData={(data) => handleSaveData(data)}
         // />
         <AddEventOverlay requestClose={() => setShowAddNew(!showAddNew)}>
-          <AddEventForm />
+          <AddEventForm
+            requestClose={() => setShowAddNew(!showAddNew)}
+            saveData={(data) => handleSaveData(data)}
+          />
         </AddEventOverlay>
       )}
     </main>

@@ -18,6 +18,7 @@ A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared
 
 # Release 2
 
+- p1! Fix date error in AddEventForm.tsx later. Using multiple layers of shadcn/radix/react-hook-forms/zod etc is complicating the flow!
 - https://ui.shadcn.com/docs/components/drawer
 - Animations on initial load, and add and remove
 - Import from CSV

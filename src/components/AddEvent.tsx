@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import { EventType } from "./types";
+import moment from "moment";
 
 interface AddEventProps {
   requestClose: () => void;
@@ -12,7 +13,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
     id: "",
     eventType: "",
     personName: "Hello",
-    eventDate: "",
+    eventDate: new Date(),
   });
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -48,7 +49,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (eventForm.personName != "" && eventForm.eventDate != "") {
+    if (eventForm.personName != "" && eventForm.eventDate != null) {
       let _eventCard = { ...eventForm, id: nanoid() };
       console.log(_eventCard);
       saveData(_eventCard);
@@ -132,7 +133,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
             className="mt-4"
             name="eventDate"
             onChange={handleOnChange}
-            value={eventForm.eventDate}
+            value={eventForm.eventDate?.toString()}
           />
         </label>
 

@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function daysToGoNumber(date: string): number {
+export function daysToGoNumber(date: Date): number {
   const today = moment();
   let target = moment(date);
 
