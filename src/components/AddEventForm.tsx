@@ -1,5 +1,5 @@
 // New form for adding events. Only the form, not the overlay.
-
+// @ts-ignore
 import { EventType } from "./types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

@@ -1,8 +1,8 @@
-import React, { ChangeEventHandler, useRef, useState } from "react";
+import { ChangeEventHandler, useRef, useState } from "react";
 
 import { format, isValid, parse } from "date-fns";
 import { DayPicker, SelectSingleEventHandler } from "react-day-picker";
-import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
+// import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 
 export default function DatePickerDialog() {
   const [selected, setSelected] = useState<Date>();

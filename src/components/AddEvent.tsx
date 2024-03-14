@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import { EventType } from "./types";
-import moment from "moment";
 
 interface AddEventProps {
   requestClose: () => void;

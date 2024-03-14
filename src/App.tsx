@@ -11,9 +11,9 @@ import AddEventOverlay from "./components/AddEventOverlay";
 function App() {
   // State for events
   const [events, setEvents] = useState<EventType[]>([]);
-  const [showAddNew, setShowAddNew] = useState(true);
+  const [showAddNew, setShowAddNew] = useState(false);
   // State for selected event. To view, edit or delete.
-  const [selectedEventID, setSelectedEventID] = useState("");
+  // const [selectedEventID, setSelectedEventID] = useState("");
 
   useEffect(() => {
     // Load events if they exist in local storage
