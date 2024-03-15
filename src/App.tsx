@@ -7,6 +7,7 @@ import { FilePlusIcon } from "@radix-ui/react-icons";
 import { daysToGoNumber } from "./lib/utils";
 import AddEventForm from "./components/AddEventForm";
 import AddEventOverlay from "./components/AddEventOverlay";
+import AddEvent from "./components/AddEvent";
 
 function App() {
   // State for events
@@ -107,15 +108,15 @@ function App() {
       </section>
 
       {showAddNew && (
-        // <AddEvent
-        //   requestClose={() => setShowAddNew(!showAddNew)}
-        //   saveData={(data) => handleSaveData(data)}
-        // />
         <AddEventOverlay requestClose={() => setShowAddNew(!showAddNew)}>
-          <AddEventForm
+          <AddEvent
             requestClose={() => setShowAddNew(!showAddNew)}
             saveData={(data) => handleSaveData(data)}
           />
+          {/* <AddEventForm
+            requestClose={() => setShowAddNew(!showAddNew)}
+            saveData={(data) => handleSaveData(data)}
+          /> */}
         </AddEventOverlay>
       )}
     </main>

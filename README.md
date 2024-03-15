@@ -6,11 +6,7 @@ A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared
 
 # Release 1
 
-- Build test
-- Test on phone with Netlify
-- Fix the input box UI, overlay
-- Replace cancel with close button too. Same function to be called.
-- Empty state, "add first event"
+- p1 Empty state, "add first event"
 - Name input limit chars to 120
 - Test on local Chrome tab
 - Create icon, marketing material

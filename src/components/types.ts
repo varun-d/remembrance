@@ -2,5 +2,5 @@ export type EventType = {
   id: string;
   eventType: string;
   personName: string;
-  eventDate: Date;
+  eventDate: string;
 };
