@@ -4,6 +4,7 @@ import { EventType } from "./types";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { Button } from "@/components/ui/button";
 
 interface AddEventProps {
   requestClose: () => void;
@@ -13,7 +14,7 @@ interface AddEventProps {
 export default function AddEvent({ requestClose, saveData }: AddEventProps) {
   const [eventForm, setEventForm] = useState<EventType>({
     id: "",
-    eventType: "general_event",
+    eventType: "General Event",
     personName: "",
     eventDate: new Date().toISOString().slice(0, 10),
   });
@@ -60,7 +61,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
   }
 
   return (
-    <form className="p-2" onSubmit={handleFormSubmit}>
+    <form className="p-2 m-auto" onSubmit={handleFormSubmit}>
       <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
         Add a new event
       </h3>
@@ -70,19 +71,19 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
         <Label htmlFor="event-type">What's the celebration? *</Label>
         <RadioGroup
           onValueChange={handleRadioChange}
-          defaultValue="general_event"
+          defaultValue="General Event"
           id="event-type"
         >
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="general_event" id="r1" />
+            <RadioGroupItem value="General Event" id="r1" />
             <Label htmlFor="r1">General Event</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="birthday" id="r2" />
+            <RadioGroupItem value="Birthday" id="r2" />
             <Label htmlFor="r2">Birthday</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="anniversary" id="r3" />
+            <RadioGroupItem value="Anniversary" id="r3" />
             <Label htmlFor="r3">Anniversary</Label>
           </div>
         </RadioGroup>
@@ -92,7 +93,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
 
       <div className="grid mt-8 w-full max-w-sm items-center gap-1.5">
         <Label htmlFor="personName">
-          {eventForm.eventType === "general_event" ? `What` : `Who`} are you
+          {eventForm.eventType === "General Event" ? `What` : `Who`} are you
           celebrating?
         </Label>
         <Input
@@ -115,18 +116,12 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
           value={eventForm.eventDate}
         />
       </div>
-
-      <button className="mt-8 bg-slate-800 p-4 rounded-md text-white">
-        Save event
-      </button>
-
-      <button
-        className="mt-6 ml-4 bg-slate-800 p-4 rounded-md text-white"
-        onClick={requestClose}
-        type="button"
-      >
-        Cancel
-      </button>
+      <div className="grid mt-8 w-full max-w-sm items-center gap-1.5">
+        <Button>Save event</Button>
+        <Button variant="secondary" onClick={requestClose}>
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 }

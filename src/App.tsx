@@ -4,10 +4,12 @@ import Header from "./components/Header";
 import { EventType } from "./components/types";
 import EventListItem from "./components/EventListItem";
 import { FilePlusIcon } from "@radix-ui/react-icons";
-import { daysToGoNumber } from "./lib/utils";
-import AddEventForm from "./components/AddEventForm";
+import { daysToGoNumber, getFriendlyEventName } from "./lib/utils";
+import AddEventForm from "./components/AddEventForm_bck";
 import AddEventOverlay from "./components/AddEventOverlay";
 import AddEvent from "./components/AddEvent";
+import { ToastAction } from "./components/ui/toast";
+import { useToast } from "./components/ui/use-toast";
 
 function App() {
   // State for events
@@ -15,6 +17,8 @@ function App() {
   const [showAddNew, setShowAddNew] = useState(false);
   // State for selected event. To view, edit or delete.
   // const [selectedEventID, setSelectedEventID] = useState("");
+
+  const { toast } = useToast();
 
   useEffect(() => {
     // Load events if they exist in local storage
@@ -45,6 +49,12 @@ function App() {
   const handleSaveData = (data: EventType) => {
     console.log("Saving in parent", data);
     setEvents((prevVal) => [...prevVal, data]);
+
+    // Show toast
+    toast({
+      title: `Event added for ${data.personName}!`,
+      description: getFriendlyEventName(data.eventType),
+    });
   };
 
   // Future Releases handler function when an Event is clicked to view it, edit or delete it
@@ -62,8 +72,14 @@ function App() {
     // This was important! Need to close view!
     // Otherwise, got the React 16+ Warning: Cannot update a component * while rendering a different component *
     // dispatchMode("closeAll");
-    console.log(newEventList);
     setEvents(newEventList);
+
+    toast({
+      duration: 2000,
+      variant: "destructive",
+      title: `Event ID ${eventId} deleted!`,
+      // action: <ToastAction altText="Added Event">Undo</ToastAction>, // Future! Undo delete
+    });
   };
 
   // Map over events to create array of EventListItem
@@ -84,16 +100,15 @@ function App() {
   return (
     <main className="max-w-xl mx-auto">
       <Header title="Remembrance" />
-      <section className="container p-4">
+      <section className="container px-4 mt-2">
         <p className="text-sm text-muted-foreground">
-          A Chrome new-tab app to see events 7 and 14 days before they happen.
-          Be prepared days before the event!
+          Be reminded of upcoming birthdays and anniversaries 7 days prior.
         </p>
       </section>
-      <section className="container p-4 inline-flex justify-between">
-        <h1 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+      <section className="container px-4 mt-4 inline-flex justify-between">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
           Upcoming events
-        </h1>{" "}
+        </h2>{" "}
         {/* <Button onClick={() => setShowAddNew(!showAddNew)}>
           <IconTextPlus size={18} />
           &nbsp; Add New Event
@@ -103,7 +118,7 @@ function App() {
         </Button>
       </section>
 
-      <section className="container p-4">
+      <section className="container px-4 mt-2">
         <div className="mt-6 flex flex-col gap-8">{eventList}</div>
       </section>
 

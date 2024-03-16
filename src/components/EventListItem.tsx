@@ -42,7 +42,7 @@ export function daysToGoString(daysToGo: number): string {
 }
 
 // Using Moment.js write a function given a date string calculate the age of the person for the event. If event type is birthday, return "Turning X" where X is the age. If event type is anniversary, return "Celebrating Xst/Xnd/Xrd" where X is the age.
-function writeCelebrationText(eventType: string, eventDate: Date): string {
+function writeCelebrationText(eventType: string, eventDate: string): string {
   let _eventDate = moment(eventDate);
   let _today = moment();
   let _age = _today.diff(_eventDate, "years");

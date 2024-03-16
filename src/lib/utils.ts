@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function daysToGoNumber(date: Date): number {
+export function daysToGoNumber(date: string): number {
   const today = moment();
   let target = moment(date);
 
@@ -22,5 +22,18 @@ export function daysToGoNumber(date: Date): number {
   } else {
     let _numdays = target.diff(today, "days", true);
     return _numdays;
+  }
+}
+// This isn't right. Hard coded values in case. What if data changes?
+export function getFriendlyEventName(eventType: string) {
+  switch (eventType) {
+    case "general event":
+      return "General Event";
+    case "birthday":
+      return "Birthday 🎂";
+    case "anniversary":
+      return "Anniversary 🎉";
+    default:
+      return "General Event 🗓️";
   }
 }

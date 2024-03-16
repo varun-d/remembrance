@@ -8,9 +8,12 @@ A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared
 
 - p1 Empty state, "add first event"
 - Name input limit chars to 120
+- Addtoastmessage? Radix UI
 - Test on local Chrome tab
 - Create icon, marketing material
-- PUBLISH on Chrome Store
+- Change to remind only 7 days in advance. Change color to RED.
+- Change text and confirm text
+- p1 PUBLISH on Chrome Store
 
 # Release 2
 
