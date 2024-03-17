@@ -62,7 +62,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
 
   return (
     <form className="p-2 m-auto" onSubmit={handleFormSubmit}>
-      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+      <h3 className="mt-2 scroll-m-20 text-2xl font-semibold tracking-tight">
         Add a new event
       </h3>
 

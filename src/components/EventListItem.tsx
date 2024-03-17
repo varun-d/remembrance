@@ -2,6 +2,7 @@ import { EventType } from "./types";
 import { IconTrashX } from "@tabler/icons-react";
 import { daysToGoNumber } from "../lib/utils";
 import moment from "moment";
+import { Button } from "./ui/button";
 
 // EventListItemProps which also includes onSelection in our case
 interface EventListItemProps extends EventType {
@@ -81,22 +82,21 @@ export default function EventListItem({
       {/* Person's Name */}
       <h2 className="text-2xl text-cprimary_dark mb-2">{personName}</h2>
 
-      <div className="flex flex-row justify-between">
-        <div className="inline-flex gap-2">
-          <p className="leading-7 [&:not(:first-child)]:mt-6">
-            {writeCelebrationText(eventType, eventDate)}
-            {" on "}
-            {moment(eventDate).format("ddd, Do MMM")}
-          </p>
-        </div>
-        <div className="inline-flex gap-2">
-          {/* <IconEdit size={24} /> */}
+      <div className="flex flex-row justify-between items-end">
+        <p className="leading-7 [&:not(:first-child)]:mt-6">
+          {writeCelebrationText(eventType, eventDate)}
+          {" on "}
+          {moment(eventDate).format("ddd, Do MMM")}
+        </p>
+
+        {/* <IconEdit size={24} /> */}
+        <Button variant="outline" size="icon">
           <IconTrashX
             className="m-1 text-destructive hover:text-red-700 cursor-pointer"
-            size={24}
+            size={20}
             onClick={() => onDelete(id)}
           />
-        </div>
+        </Button>
       </div>
       <hr className="mt-2" />
     </div>

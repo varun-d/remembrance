@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6f0d180d-d8c5-41ec-8602-25aa47ece56b/deploy-status)](https://app.netlify.com/sites/venerable-platypus-699ad0/deploys)
+
 # Remembrance
 
 A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared days before the event!

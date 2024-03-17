@@ -106,17 +106,14 @@ function App() {
       <section className="container px-4 mt-2">
         <p className="text-sm text-muted-foreground">
           Be reminded of upcoming birthdays and anniversaries 7 days prior. All
-          data stored locally.
+          data stored locally. From the share menu click on "Add to Home Screen"
+          for a native app experience.
         </p>
       </section>
       <section className="container px-4 mt-8 inline-flex justify-between">
         <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
           Upcoming events
-        </h2>{" "}
-        {/* <Button onClick={() => setShowAddNew(!showAddNew)}>
-          <IconTextPlus size={18} />
-          &nbsp; Add New Event
-        </Button> */}
+        </h2>
         <Button onClick={() => setShowAddNew(!showAddNew)}>
           <FilePlusIcon className="mr-2 h-4 w-4" /> Add Event
         </Button>
@@ -136,10 +133,6 @@ function App() {
             requestClose={() => setShowAddNew(!showAddNew)}
             saveData={(data) => handleSaveData(data)}
           />
-          {/* <AddEventForm
-            requestClose={() => setShowAddNew(!showAddNew)}
-            saveData={(data) => handleSaveData(data)}
-          /> */}
         </AddEventOverlay>
       )}
     </main>
