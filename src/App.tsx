@@ -10,6 +10,7 @@ import AddEventOverlay from "./components/AddEventOverlay";
 import AddEvent from "./components/AddEvent";
 import { ToastAction } from "./components/ui/toast";
 import { useToast } from "./components/ui/use-toast";
+import StateZero from "./components/StateZero";
 
 function App() {
   // State for events
@@ -43,6 +44,10 @@ function App() {
       console.log(`Saving ${events.length} events to localStorage`);
       localStorage.setItem("events", JSON.stringify(events));
     }
+
+    if (events.length === 0) {
+      localStorage.removeItem("events");
+    }
   }, [events]);
 
   // Handler function when "Save" is clicked in AddEvent
@@ -69,15 +74,13 @@ function App() {
     let newEventList = events.filter((event) => {
       return event.id !== eventId;
     });
-    // This was important! Need to close view!
-    // Otherwise, got the React 16+ Warning: Cannot update a component * while rendering a different component *
-    // dispatchMode("closeAll");
+    console.log("Deleting Event", newEventList);
     setEvents(newEventList);
 
     toast({
       duration: 2000,
       variant: "destructive",
-      title: `Event ID ${eventId} deleted!`,
+      title: `Event deleted!`,
       // action: <ToastAction altText="Added Event">Undo</ToastAction>, // Future! Undo delete
     });
   };
@@ -102,10 +105,11 @@ function App() {
       <Header title="Remembrance" />
       <section className="container px-4 mt-2">
         <p className="text-sm text-muted-foreground">
-          Be reminded of upcoming birthdays and anniversaries 7 days prior.
+          Be reminded of upcoming birthdays and anniversaries 7 days prior. All
+          data stored locally.
         </p>
       </section>
-      <section className="container px-4 mt-4 inline-flex justify-between">
+      <section className="container px-4 mt-8 inline-flex justify-between">
         <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
           Upcoming events
         </h2>{" "}
@@ -121,7 +125,11 @@ function App() {
       <section className="container px-4 mt-2">
         <div className="mt-6 flex flex-col gap-8">{eventList}</div>
       </section>
-
+      {events.length === 0 && (
+        <section className="container px-4 mt-2">
+          <StateZero />
+        </section>
+      )}
       {showAddNew && (
         <AddEventOverlay requestClose={() => setShowAddNew(!showAddNew)}>
           <AddEvent

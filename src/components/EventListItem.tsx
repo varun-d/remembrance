@@ -46,13 +46,13 @@ function writeCelebrationText(eventType: string, eventDate: string): string {
   let _eventDate = moment(eventDate);
   let _today = moment();
   let _age = _today.diff(_eventDate, "years");
-
+  console.log(_age);
   if (eventType === "birthday") {
     return `Turning ${_age}`;
   } else if (eventType === "anniversary") {
     return `Celebrating their ${ordinal_suffix_of(_age)}`;
   } else {
-    return "Unknown";
+    return "Event";
   }
 }
 
@@ -68,7 +68,7 @@ export default function EventListItem({
       <div className="flex flex-row justify-between mb-1">
         {/* Event Type */}
         <p className="text-sm text-primary font-medium leading-none">
-          {eventType} {eventType === "birthday" ? "🎂" : "🎉"} .circa{" "}
+          {eventType} {eventType === "Birthday" ? "🎂" : "🎉"} .circa{" "}
           {moment(eventDate).format("YYYY")}
         </p>
 
@@ -92,7 +92,7 @@ export default function EventListItem({
         <div className="inline-flex gap-2">
           {/* <IconEdit size={24} /> */}
           <IconTrashX
-            className="m-1 text-red-800 hover:text-red-700 cursor-pointer"
+            className="m-1 text-destructive hover:text-red-700 cursor-pointer"
             size={24}
             onClick={() => onDelete(id)}
           />
