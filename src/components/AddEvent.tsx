@@ -67,7 +67,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
       </h3>
 
       {/* Select type of event; Birthday or Anniversary */}
-      <div className="grid mt-8 w-full max-w-sm items-center gap-1.5">
+      <div className="grid mt-8 w-full items-center gap-1.5">
         <Label htmlFor="event-type">What's the celebration? *</Label>
         <RadioGroup
           onValueChange={handleRadioChange}
@@ -91,7 +91,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
 
       {/* Name input for the event */}
 
-      <div className="grid mt-8 w-full max-w-sm items-center gap-1.5">
+      <div className="grid mt-8 w-full items-center gap-1.5">
         <Label htmlFor="personName">
           {eventForm.eventType === "General Event" ? `What` : `Who`} are you
           celebrating?
@@ -107,7 +107,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
 
       <br />
       {/* Date Input for the event. The description / label should be dynamic */}
-      <div className="grid mt-8 w-full max-w-sm items-center gap-1.5">
+      <div className="grid mt-8 w-full items-center gap-1.5">
         <Label htmlFor="eventDate">Event Date</Label>
         <input
           type="date"
@@ -116,7 +116,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
           value={eventForm.eventDate}
         />
       </div>
-      <div className="grid mt-8 w-full max-w-sm items-center gap-1.5">
+      <div className="grid mt-8 w-full items-center gap-1.5">
         <Button>Save event</Button>
         <Button variant="secondary" onClick={requestClose}>
           Cancel

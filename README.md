@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6f0d180d-d8c5-41ec-8602-25aa47ece56b/deploy-status)](https://app.netlify.com/sites/venerable-platypus-699ad0/deploys)
-
 # Remembrance
 
 A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared days before the event!
@@ -8,13 +6,9 @@ A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared
 
 # Release 1
 
-- p1 Empty state, "add first event"
-- Name input limit chars to 120
-- Addtoastmessage? Radix UI
-- Test on local Chrome tab
-- Create icon, marketing material
-- Change to remind only 7 days in advance. Change color to RED.
-- Change text and confirm text
+- Fix! Birthday, "Event On" instead of age.
+- Create marketing material for Chrome Store
+- Add demo content like Boss, VP/ Jason Yager, Carla Salmon, Boondock.
 - p1 PUBLISH on Chrome Store
 
 # Release 2

@@ -8,7 +8,6 @@ import { daysToGoNumber, getFriendlyEventName } from "./lib/utils";
 import AddEventForm from "./components/AddEventForm_bck";
 import AddEventOverlay from "./components/AddEventOverlay";
 import AddEvent from "./components/AddEvent";
-import { ToastAction } from "./components/ui/toast";
 import { useToast } from "./components/ui/use-toast";
 import StateZero from "./components/StateZero";
 
@@ -106,8 +105,7 @@ function App() {
       <section className="container px-4 mt-2">
         <p className="text-sm text-muted-foreground">
           Be reminded of upcoming birthdays and anniversaries 7 days prior. All
-          data stored locally. From the share menu click on "Add to Home Screen"
-          for a native app experience.
+          data stored locally. No sign-in required.
         </p>
       </section>
       <section className="container px-4 mt-8 inline-flex justify-between">
