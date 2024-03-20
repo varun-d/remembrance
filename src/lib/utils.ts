@@ -29,11 +29,11 @@ export function getFriendlyEventName(eventType: string) {
   switch (eventType) {
     case "general event":
       return "General Event";
-    case "birthday":
+    case "Birthday":
       return "Birthday 🎂";
-    case "anniversary":
+    case "Anniversary":
       return "Anniversary 🎉";
     default:
-      return "General Event 🗓️";
+      return "General Event 🎉";
   }
 }

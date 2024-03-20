@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { EventType } from "./types";
+import { EventType, TypesOfEvents } from "./types";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
@@ -14,7 +14,7 @@ interface AddEventProps {
 export default function AddEvent({ requestClose, saveData }: AddEventProps) {
   const [eventForm, setEventForm] = useState<EventType>({
     id: "",
-    eventType: "General Event",
+    eventType: TypesOfEvents.general_event,
     personName: "",
     eventDate: new Date().toISOString().slice(0, 10),
   });
@@ -23,7 +23,7 @@ export default function AddEvent({ requestClose, saveData }: AddEventProps) {
     setEventForm((prevVal) => {
       return {
         ...prevVal,
-        eventType: radioSelection,
+        eventType: radioSelection as TypesOfEvents,
       };
     });
   }

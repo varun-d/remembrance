@@ -48,9 +48,9 @@ function writeCelebrationText(eventType: string, eventDate: string): string {
   let _today = moment();
   let _age = _today.diff(_eventDate, "years");
   console.log(_age);
-  if (eventType === "birthday") {
+  if (eventType === "Birthday") {
     return `Turning ${_age}`;
-  } else if (eventType === "anniversary") {
+  } else if (eventType === "Anniversary") {
     return `Celebrating their ${ordinal_suffix_of(_age)}`;
   } else {
     return "Event";

@@ -6,9 +6,7 @@ A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared
 
 # Release 1
 
-- Fix! Birthday, "Event On" instead of age.
 - Create marketing material for Chrome Store
-- Add demo content like Boss, VP/ Jason Yager, Carla Salmon, Boondock.
 - p1 PUBLISH on Chrome Store
 
 # Release 2
