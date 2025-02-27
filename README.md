@@ -22,3 +22,7 @@ A Chrome new-tab app to see events 7 and 14 days before they happen. Be prepared
 # Release 3
 
 - Edge cases test
+
+## Build notes
+
+To buld ` `

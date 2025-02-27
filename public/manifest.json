@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Remembrance",
   "version": "1.0",
-  "description": "Get reminded 7 days in advance of your loved ones' birthdays and anniversaries.",
+  "description": "Be reminded of upcoming birthdays and anniversaries 7-days in advance. All data stored locally. No sign-in required.",
   "permissions": ["activeTab"],
   "chrome_url_overrides": {
     "newtab": "index.html"
